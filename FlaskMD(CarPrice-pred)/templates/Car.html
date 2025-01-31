@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Price Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            width: 50%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin: 10px 0 5px;
+        }
+        input, select {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 1.2em;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Car Price Prediction</h1>
+        <form action="/predict" method="POST">
+            <label for="car_drive">Car Drive:</label>
+            <select id="car_drive" name="car_drive" required>
+                <option value="FWD">FWD</option>
+                <option value="4WD">4WD</option>
+                <option value="RWD">RWD</option>
+            </select>
+
+            <label for="car_mileage">Car Mileage:</label>
+            <input type="number" id="car_mileage" name="car_mileage" required>
+
+            <label for="car_country">Car Country:</label>
+            <select id="car_country" name="car_country" required>
+                <option value="USA">USA</option>
+                <option value="DE">Germany</option>
+                <option value="CN">China</option>
+                <option value="JP">Japan</option>
+                <option value="IN">India</option>
+                <option value="FR">France</option>
+                <option value="IT">Italy</option>
+                <option value="KR">South Korea</option>
+                <option value="CA">Canada</option>
+                <option value="GB">United Kingdom</option>
+                <option value="RU">Russia</option>
+                <option value="BR">Brazil</option>
+                <option value="AU">Australia</option>
+                <option value="MX">Mexico</option>
+                <option value="ZA">South Africa</option>
+                <option value="SA">Saudi Arabia</option>
+            </select>
+            <label for="car_engine_hp">Car Engine hp:</label>
+            <input type="number" id="car_engine_hp" name="car_engine_hp" required>
+            <label for="car_age">Car Age:</label>
+            <input type="number" id="car_age" name="car_age" required>
+            <button type="submit">Predict</button>
+        </form>
+        {% if prediction_text %}
+        <div class="result">
+            {{ prediction_text }}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
