@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passenger Survival Prediction</title>
+    <style>
+          body {
+              font-family: Arial, sans-serif;
+              margin: 0;
+              padding: 0;
+              background-color: #f0f0f0;
+
+              background-image: url('static/jjhwhite.jpg'); /* Add your background image URL here */
+              background-size: cover;
+              background-position: center;
+              height: 100vh; /* Makes sure it covers the whole viewport height */
+              width: 100vw; /* Makes sure it covers the whole viewport width */
+          }
+
+        .container {
+            width: 30%;
+            margin:  auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 10px #0000001a;
+            border-radius: 10px;
+        }
+        h1 {
+            text-align: center;
+            font-family: 'Pacifico', cursive;
+            color: #383838;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin: 10px 0 5px;
+        }
+        input, select {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #110e0e;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px;
+            background-color: #3a3a3a;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #000000;
+        }
+        .result {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 1.2em;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Passenger Survival Prediction</h1>
+        <form action="/predict" method="POST">
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="Age" required>
+
+            <label for="gender">Gender:</label>
+            <select id="gender" name="Gender" required>
+                <option value="" disabled selected>Select Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+
+            <label for="class">Class:</label>
+            <select id="class" name="Class" required>
+                <option value="" disabled selected>Select Class</option>
+                <option value="business">Business</option>
+                <option value="economy">Economy</option>
+                <option value="first">First</option>
+            </select>
+
+            <label for="seat_type">Seat Type:</label>
+            <select id="seat_type" name="Seat_Type" required>
+                <option value="" disabled selected>Select Seat Type</option>
+                <option value="aisle">Aisle</option>
+                <option value="middle">Middle</option>
+                <option value="window">Window</option>
+            </select>
+
+            <label for="fare_paid">Fare Paid:</label>
+            <input type="number" id="fare_paid" name="Fare_Paid" required>
+
+            <button type="submit">Predict</button>
+        </form>
+        {% if prediction_text %}
+        <div class="result">
+            {{ prediction_text }}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
